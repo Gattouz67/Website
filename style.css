@@ -1,0 +1,452 @@
+/* =====================
+   RESET & BASE
+===================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f3;
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =====================
+   NAVIGATION
+===================== */
+nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #1a1a1a;
+}
+
+.cart-btn {
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+}
+
+.cart-btn:hover {
+  opacity: 0.85;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 15px;
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #f0f0ee;
+  border: 1px solid #e0e0de;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* =====================
+   CATALOGUE & FILTRES
+===================== */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: #888;
+}
+
+.filter-btn {
+  background: #ffffff;
+  border: 1px solid #e0e0de;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #555;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.filter-btn:hover {
+  background: #f0f0ee;
+}
+
+.filter-btn.active {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+/* =====================
+   GRILLE PRODUITS
+===================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: #bbb;
+}
+
+.card-img {
+  background: #f5f5f3;
+  border-radius: 8px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 11px;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.tag-neuf       { background: #EAF3DE; color: #3B6D11; }
+.tag-reconditionne { background: #E6F1FB; color: #185FA5; }
+.tag-occasion   { background: #FAEEDA; color: #854F0B; }
+
+.card-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-specs {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.card-price {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.add-btn {
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover {
+  opacity: 0.8;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+  font-size: 14px;
+  grid-column: 1 / -1;
+}
+
+/* =====================
+   CONTACT
+===================== */
+.contact-bar {
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 3rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.contact-bar h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.contact-bar p {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #1a1a1a;
+}
+
+/* =====================
+   MODAL PANIER
+===================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  width: 380px;
+  max-width: 95vw;
+  padding: 1.5rem;
+}
+
+.modal h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0ee;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.modal-item:last-of-type {
+  border: none;
+}
+
+.modal-item-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qty-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  background: #f0f0ee;
+  border: 1px solid #e0e0de;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.qty-btn:hover {
+  background: #e0e0de;
+}
+
+.modal-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sec {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #1a1a1a;
+  transition: background 0.2s;
+}
+
+.btn-sec:hover {
+  background: #f0f0ee;
+}
+
+.btn-prim {
+  flex: 2;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-prim:hover {
+  opacity: 0.85;
+}
+
+.modal-empty {
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  padding: 1.5rem 0;
+}
+
+/* =====================
+   TOAST
+===================== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 300;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+}
