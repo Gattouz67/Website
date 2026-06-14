@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCShop ERP — Gestion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">&#128187; PCShop ERP</div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="dashboard">&#127968; Tableau de bord</button>
+        <button class="nav-item" data-section="stock">&#128230; Stock</button>
+        <button class="nav-item" data-section="commandes">&#128717; Commandes</button>
+        <button class="nav-item" data-section="clients">&#128101; Clients</button>
+        <button class="nav-item" data-section="factures">&#128196; Factures</button>
+      </nav>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="content">
+
+      <!-- DASHBOARD -->
+      <section class="section active" id="s-dashboard">
+        <h2 class="section-title">Tableau de bord</h2>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Chiffre d'affaires</div>
+            <div class="metric-val" id="m-ca">0 €</div>
+            <div class="metric-sub">Ce mois</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Commandes</div>
+            <div class="metric-val" id="m-cmd">0</div>
+            <div class="metric-sub" id="m-cmd-sub">En cours : 0</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">PCs en stock</div>
+            <div class="metric-val" id="m-stock">0</div>
+            <div class="metric-sub" id="m-stock-sub">Alertes : 0</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Clients</div>
+            <div class="metric-val" id="m-clients">0</div>
+            <div class="metric-sub">Total</div>
+          </div>
+        </div>
+        <div class="alerte" id="alerte-stock" style="display:none"></div>
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Dernières commandes</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Produit</th>
+                  <th>Montant</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="dash-commandes"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- STOCK -->
+      <section class="section" id="s-stock">
+        <div class="section-head">
+          <h2 class="section-title">Stock</h2>
+          <button class="btn" id="btn-add-stock">+ Ajouter un PC</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Type</th>
+                  <th>Prix</th>
+                  <th>Qté</th>
+                  <th>Niveau</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="stock-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMANDES -->
+      <section class="section" id="s-commandes">
+        <div class="section-head">
+          <h2 class="section-title">Commandes</h2>
+          <button class="btn" id="btn-add-cmd">+ Nouvelle commande</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Client</th>
+                  <th>Produit</th>
+                  <th>Montant</th>
+                  <th>Livraison</th>
+                  <th>Paiement</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="cmd-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLIENTS -->
+      <section class="section" id="s-clients">
+        <div class="section-head">
+          <h2 class="section-title">Clients</h2>
+          <button class="btn" id="btn-add-client">+ Ajouter un client</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Type</th>
+                  <th>Commandes</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="clients-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- FACTURES -->
+      <section class="section" id="s-factures">
+        <div class="section-head">
+          <h2 class="section-title">Factures</h2>
+          <button class="btn" id="btn-add-facture">+ Créer une facture</button>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Client</th>
+                  <th>Produit</th>
+                  <th>Montant</th>
+                  <th>Date</th>
+                  <th>Paiement</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="factures-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL GÉNÉRIQUE -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modal-title">Formulaire</h3>
+        <button class="close-btn" id="modal-close">&times;</button>
+      </div>
+      <div id="modal-body"></div>
+      <div class="modal-actions">
+        <button class="btn-sec" id="modal-cancel">Annuler</button>
+        <button class="btn" id="modal-save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
