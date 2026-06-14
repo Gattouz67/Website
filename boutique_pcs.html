@@ -1,0 +1,211 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary)}
+nav{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.logo{font-size:16px;font-weight:500;letter-spacing:-0.3px}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:14px;color:var(--color-text-secondary);text-decoration:none;cursor:pointer}
+.nav-links a:hover{color:var(--color-text-primary)}
+.cart-btn{background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px}
+.hero{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:3rem 2rem;text-align:center}
+.hero h1{font-size:28px;font-weight:500;margin-bottom:8px}
+.hero p{font-size:15px;color:var(--color-text-secondary);max-width:480px;margin:0 auto 1.5rem}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--color-text-secondary)}
+.main{max-width:1100px;margin:0 auto;padding:2rem}
+.filters{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:13px;color:var(--color-text-secondary)}
+.filter-btn{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:5px 14px;font-size:13px;cursor:pointer;color:var(--color-text-secondary)}
+.filter-btn.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;display:flex;flex-direction:column;gap:10px}
+.card-img{background:var(--color-background-secondary);border-radius:var(--border-radius-md);height:140px;display:flex;align-items:center;justify-content:center}
+.card-img i{font-size:48px;color:var(--color-text-tertiary)}
+.card-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;background:var(--color-background-secondary);border-radius:20px;padding:3px 10px;color:var(--color-text-secondary);width:fit-content}
+.card-name{font-size:14px;font-weight:500}
+.card-specs{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.card-price{font-size:16px;font-weight:500}
+.add-btn{background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px}
+.add-btn:hover{opacity:0.85}
+.tag-neuf{background:#EAF3DE;color:#3B6D11}
+.tag-occasion{background:#FAEEDA;color:#854F0B}
+.tag-reconditionne{background:#E6F1FB;color:#185FA5}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);width:360px;max-width:95vw;padding:1.5rem}
+.modal h2{font-size:16px;font-weight:500;margin-bottom:1rem}
+.modal-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.modal-item:last-of-type{border:none}
+.qty-ctrl{display:flex;align-items:center;gap:8px}
+.qty-btn{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;width:24px;height:24px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.modal-total{display:flex;justify-content:space-between;font-size:15px;font-weight:500;margin:1rem 0}
+.modal-actions{display:flex;gap:8px}
+.btn-sec{flex:1;background:transparent;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:9px;font-size:13px;cursor:pointer;color:var(--color-text-primary)}
+.btn-prim{flex:2;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);padding:9px;font-size:13px;font-weight:500;cursor:pointer}
+.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:14px}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--color-text-primary);color:var(--color-background-primary);padding:10px 18px;border-radius:var(--border-radius-md);font-size:13px;opacity:0;transition:opacity 0.3s;z-index:300;pointer-events:none}
+.toast.show{opacity:1}
+.contact-bar{background:var(--color-background-primary);border-top:0.5px solid var(--color-border-tertiary);margin-top:3rem;padding:2rem;text-align:center}
+.contact-bar h3{font-size:16px;font-weight:500;margin-bottom:6px}
+.contact-bar p{font-size:13px;color:var(--color-text-secondary)}
+.contact-links{display:flex;gap:12px;justify-content:center;margin-top:12px}
+.contact-link{font-size:13px;color:var(--color-text-secondary);text-decoration:none;display:flex;align-items:center;gap:4px}
+</style>
+
+<h2 class="sr-only">Boutique de vente de PC — catalogue, filtres et panier</h2>
+
+<nav>
+  <span class="logo"><i class="ti ti-device-desktop" aria-hidden="true"></i> PCShop</span>
+  <div class="nav-links">
+    <a onclick="scrollTo(0,300)">Catalogue</a>
+    <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+    <button class="cart-btn" onclick="openCart()"><i class="ti ti-shopping-cart" aria-hidden="true"></i> Panier <span id="cart-count">0</span></button>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>PC de qualité, prix honnêtes</h1>
+  <p>Vente de PC neufs, reconditionnés et d'occasion — particuliers et professionnels bienvenus.</p>
+  <div class="hero-badges">
+    <span class="badge"><i class="ti ti-shield-check" aria-hidden="true"></i> Testés avant vente</span>
+    <span class="badge"><i class="ti ti-truck" aria-hidden="true"></i> Livraison & remise en main propre</span>
+    <span class="badge"><i class="ti ti-credit-card" aria-hidden="true"></i> Stripe · PayPal · Virement · Espèces</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="filters">
+    <span class="filter-label">Filtrer :</span>
+    <button class="filter-btn active" onclick="filter('tous',this)">Tous</button>
+    <button class="filter-btn" onclick="filter('neuf',this)">Neuf</button>
+    <button class="filter-btn" onclick="filter('reconditionne',this)">Reconditionné</button>
+    <button class="filter-btn" onclick="filter('occasion',this)">Occasion</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="contact-bar" id="contact">
+  <h3>Une question ? Une offre à faire ?</h3>
+  <p>Contactez-nous directement, on répond rapidement.</p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:contact@pcshop.fr"><i class="ti ti-mail" aria-hidden="true"></i> contact@pcshop.fr</a>
+    <a class="contact-link" href="tel:+33600000000"><i class="ti ti-phone" aria-hidden="true"></i> 06 00 00 00 00</a>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cart-modal">
+  <div class="modal">
+    <h2><i class="ti ti-shopping-cart" aria-hidden="true"></i> Mon panier</h2>
+    <div id="cart-items"></div>
+    <div class="modal-total"><span>Total</span><span id="cart-total">0 €</span></div>
+    <div class="modal-actions">
+      <button class="btn-sec" onclick="closeCart()">Continuer</button>
+      <button class="btn-prim" onclick="checkout()">Commander →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const pcs=[
+  {id:1,name:"PC Bureau Polyvalent",type:"reconditionne",prix:299,specs:"Intel i5-9400 · 16 Go RAM · SSD 512 Go · Windows 11",icon:"ti-device-desktop"},
+  {id:2,name:"Tour Gaming Entrée",type:"occasion",prix:450,specs:"Ryzen 5 3600 · 16 Go RAM · GTX 1660 · SSD 1 To",icon:"ti-device-gamepad-2"},
+  {id:3,name:"Mini PC Compact",type:"reconditionne",prix:180,specs:"Intel i3-8100T · 8 Go RAM · SSD 256 Go · Windows 11",icon:"ti-device-laptop"},
+  {id:4,name:"Workstation Pro",type:"neuf",prix:890,specs:"Intel i7-13700 · 32 Go RAM · RTX 3060 · NVMe 2 To",icon:"ti-server"},
+  {id:5,name:"PC Familial",type:"reconditionne",prix:220,specs:"Intel i5-8400 · 8 Go RAM · HDD 1 To · Windows 10",icon:"ti-home"},
+  {id:6,name:"Gaming Mid-Range",type:"neuf",prix:750,specs:"Ryzen 7 5700X · 32 Go RAM · RX 6700 XT · SSD 1 To",icon:"ti-device-gamepad-2"},
+];
+
+let cart={};
+let currentFilter='tous';
+
+function tagHTML(type){
+  const labels={neuf:'Neuf',reconditionne:'Reconditionné',occasion:'Occasion'};
+  const cls={neuf:'tag-neuf',reconditionne:'tag-reconditionne',occasion:'tag-occasion'};
+  return `<span class="card-tag ${cls[type]}">${labels[type]}</span>`;
+}
+
+function renderGrid(){
+  const g=document.getElementById('grid');
+  const list=currentFilter==='tous'?pcs:pcs.filter(p=>p.type===currentFilter);
+  if(!list.length){g.innerHTML='<div class="empty">Aucun PC dans cette catégorie.</div>';return;}
+  g.innerHTML=list.map(p=>`
+    <div class="card">
+      <div class="card-img"><i class="ti ${p.icon}" aria-hidden="true"></i></div>
+      ${tagHTML(p.type)}
+      <div class="card-name">${p.name}</div>
+      <div class="card-specs">${p.specs}</div>
+      <div class="card-bottom">
+        <span class="card-price">${p.prix} €</span>
+        <button class="add-btn" onclick="addToCart(${p.id})"><i class="ti ti-plus" aria-hidden="true"></i> Ajouter</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filter(type,btn){
+  currentFilter=type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function addToCart(id){
+  cart[id]=(cart[id]||0)+1;
+  updateCartCount();
+  const p=pcs.find(x=>x.id===id);
+  showToast(`${p.name} ajouté au panier`);
+}
+
+function updateCartCount(){
+  const n=Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById('cart-count').textContent=n;
+}
+
+function openCart(){
+  const el=document.getElementById('cart-items');
+  const keys=Object.keys(cart).filter(k=>cart[k]>0);
+  if(!keys.length){el.innerHTML='<div class="empty">Panier vide</div>';}
+  else{
+    el.innerHTML=keys.map(k=>{
+      const p=pcs.find(x=>x.id==k);
+      return `<div class="modal-item">
+        <span>${p.name}</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(${k},-1)">-</button>
+          <span>${cart[k]}</span>
+          <button class="qty-btn" onclick="changeQty(${k},1)">+</button>
+        </div>
+        <span>${(p.prix*cart[k])} €</span>
+      </div>`;
+    }).join('');
+  }
+  const total=keys.reduce((s,k)=>{const p=pcs.find(x=>x.id==k);return s+(p.prix*cart[k]);},0);
+  document.getElementById('cart-total').textContent=total+' €';
+  document.getElementById('cart-modal').classList.add('open');
+}
+
+function changeQty(id,delta){
+  cart[id]=Math.max(0,(cart[id]||0)+delta);
+  updateCartCount();
+  openCart();
+}
+
+function closeCart(){document.getElementById('cart-modal').classList.remove('open');}
+
+function checkout(){
+  closeCart();
+  showToast('Redirection vers le paiement…');
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+renderGrid();
+</script>
