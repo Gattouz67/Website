@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCShop — Vente de PC</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="logo">&#128187; PCShop</span>
+    <div class="nav-links">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#contact">Contact</a>
+      <button class="cart-btn" id="cart-open-btn">
+        &#128722; Panier <span id="cart-count">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>PC de qualité, prix honnêtes</h1>
+    <p>Vente de PC neufs, reconditionnés et d'occasion — particuliers et professionnels bienvenus.</p>
+    <div class="hero-badges">
+      <span class="badge">&#10003; Testés avant vente</span>
+      <span class="badge">&#128666; Livraison &amp; remise en main propre</span>
+      <span class="badge">&#128179; Stripe · PayPal · Virement · Espèces</span>
+    </div>
+  </div>
+
+  <div class="main" id="catalogue">
+    <div class="filters">
+      <span class="filter-label">Filtrer :</span>
+      <button class="filter-btn active" data-filter="tous">Tous</button>
+      <button class="filter-btn" data-filter="neuf">Neuf</button>
+      <button class="filter-btn" data-filter="reconditionne">Reconditionné</button>
+      <button class="filter-btn" data-filter="occasion">Occasion</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="contact-bar" id="contact">
+    <h3>Une question ? Une offre à faire ?</h3>
+    <p>Contactez-nous directement, on répond rapidement.</p>
+    <div class="contact-links">
+      <a href="mailto:contact@pcshop.fr" class="contact-link">&#9993; contact@pcshop.fr</a>
+      <a href="tel:+33600000000" class="contact-link">&#128222; 06 00 00 00 00</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cart-modal">
+    <div class="modal">
+      <h2>Mon panier</h2>
+      <div id="cart-items"></div>
+      <div class="modal-total">
+        <span>Total</span>
+        <span id="cart-total">0 €</span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-sec" id="cart-close-btn">Continuer</button>
+        <button class="btn-prim" id="checkout-btn">Commander &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
