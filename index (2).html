@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <meta name="description" content="Unboxing Chill — Vente de PC neufs, reconditionnés et d'occasion. Livraison ou remise en main propre. Paiement par Stripe, PayPal, virement ou espèces." />
+  <meta name="keywords" content="vente PC, PC reconditionné, PC occasion, PC neuf, acheter ordinateur, PC pas cher, vente ordinateur" />
+  <meta name="author" content="Unboxing Chill" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Titre Google -->
+  <title>Unboxing Chill — Vente de PC neufs & reconditionnés</title>
+
+  <!-- Réseaux sociaux -->
+  <meta property="og:title" content="Unboxing Chill — Vente de PC" />
+  <meta property="og:description" content="PC neufs, reconditionnés et d'occasion. Livraison ou main propre." />
+  <meta property="og:url" content="https://unboxing-chill.netlify.app" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="logo">&#128187; Unboxing Chill</span>
+    <div class="nav-links">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#contact">Contact</a>
+      <button class="cart-btn" id="cart-open-btn">
+        &#128722; Panier <span id="cart-count">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>PC de qualité, prix honnêtes</h1>
+    <p>Vente de PC neufs, reconditionnés et d'occasion — particuliers et professionnels bienvenus.</p>
+    <div class="hero-badges">
+      <span class="badge">&#10003; Testés avant vente</span>
+      <span class="badge">&#128666; Livraison &amp; remise en main propre</span>
+      <span class="badge">&#128179; Stripe · PayPal · Virement · Espèces</span>
+    </div>
+  </div>
+
+  <div class="main" id="catalogue">
+    <div class="filters">
+      <span class="filter-label">Filtrer :</span>
+      <button class="filter-btn active" data-filter="tous">Tous</button>
+      <button class="filter-btn" data-filter="neuf">Neuf</button>
+      <button class="filter-btn" data-filter="reconditionne">Reconditionné</button>
+      <button class="filter-btn" data-filter="occasion">Occasion</button>
+    </div>
+    <div class="grid" id="grid">
+      <div class="empty">Chargement des PCs...</div>
+    </div>
+  </div>
+
+  <div class="contact-bar" id="contact">
+    <h3>Une question ? Une offre à faire ?</h3>
+    <p>Contactez-nous directement, on répond rapidement.</p>
+    <div class="contact-links">
+      <a href="mailto:contact@unboxing-chill.fr" class="contact-link">&#9993; contact@unboxing-chill.fr</a>
+      <a href="tel:+33600000000" class="contact-link">&#128222; 06 00 00 00 00</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cart-modal">
+    <div class="modal">
+      <h2>Mon panier</h2>
+      <div id="cart-items"></div>
+      <div class="modal-total">
+        <span>Total</span>
+        <span id="cart-total">0 €</span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-sec" id="cart-close-btn">Continuer</button>
+        <button class="btn-prim" id="checkout-btn">Commander &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Type module obligatoire pour Firebase -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
